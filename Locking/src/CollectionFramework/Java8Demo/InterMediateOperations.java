@@ -1,5 +1,6 @@
 package CollectionFramework.Java8Demo;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -36,5 +37,33 @@ public class InterMediateOperations {
 
          //6. Skip, starts with 11 to next 100
         System.out.println(Stream.iterate(1, x->x+1).skip(10).limit(100).count());
+
+        //7. peek: also consumes but this is intermediate
+        //performs an action on each element as it is consumed
+        Stream.iterate(1, x->x+1).skip(10).limit(50).peek(System.out::println).count();
+
+        //8. flatMap
+        //Handle streams of collections, lists, or arrays where each element is itself a collection
+        //Flatten nested structure (e.g. lists within lists) so that they can be processed as a single sequence of elements
+        //Transform and flatten elements at the same time
+        List<List<String>> listOflist = Arrays.asList(
+                Arrays.asList("Apple", "banana"),
+                Arrays.asList("Orange", "kiwi")
+        );
+        System.out.println( listOflist.get(1).get(1));
+        //convert to stream and using flat map convert to single stream
+        System.out.println(listOflist.stream().flatMap(x->x.stream()).map(String::toUpperCase).toList());
+
+        List<String> sentences = Arrays.asList(
+                "Hello world",
+                "Java streams are powerful",
+                "flatMap is useful"
+        );
+        System.out.println(sentences.
+                stream().
+                flatMap(sentence->Arrays.stream(sentence.split(" "))).
+                map(String::toUpperCase).toList());
+
+
     }
 }

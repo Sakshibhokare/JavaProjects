@@ -1,8 +1,11 @@
 package CollectionFramework.Java8Demo;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TerminalOps {
     static void main() {
@@ -32,6 +35,13 @@ public class TerminalOps {
         //6. findFirst, findAny
         System.out.println("first" + list.stream().findFirst().get());
         System.out.println(list.stream().findAny().get());
+
+        //7. toArray()
+        Objects[] array = (Objects[]) Stream.of(1,2,3,4).toArray();
+
+        //8. min max
+        System.out.println("max"+ Stream.of(2,44,69).max(Comparator.naturalOrder()).get()); // comes in optional[] so need to get
+        System.out.println("min"+ Stream.of(2,44,69).min(Comparator.naturalOrder()).get());
 
         //Example
         List<String> names = Arrays.asList("Anna", "Bob", "CharLie", "David");

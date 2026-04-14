@@ -31,7 +31,16 @@ public class ParellelStreamDemo {
         AtomicInteger sum = new AtomicInteger(0);
         List<Integer> list2 =numbers.parallelStream().map(x->sum.addAndGet(x)).toList();//using stream here answer will be correct
         System.out.println("Expected comulative sum: [1,3,6,10,15]");
-        System.out.println("Actual result with parallel stream" + list2); //this is not independent so we can not do this parallel
+        System.out.println("Actual result with parallel stream" + list2); //this is not independent so we can not do this parallel, parallelStream never guarantees order of execution
+
+
+        //convert parallel stream to sequential
+        List<Integer> list3 = Stream.iterate(1, x -> x + 1).limit(5).toList();
+        List<Long> factorialListSeq = list.stream().map(x -> factorial(x)).sequential().toList();
+        System.out.println("5 limit " + factorialListSeq);
+
+
+
     }
 
 private static long factorial(int n){
