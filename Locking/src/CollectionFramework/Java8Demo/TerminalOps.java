@@ -36,12 +36,19 @@ public class TerminalOps {
         System.out.println("first" + list.stream().findFirst().get());
         System.out.println(list.stream().findAny().get());
 
-        //7. toArray()
-        Objects[] array = (Objects[]) Stream.of(1,2,3,4).toArray();
+        //7. toArray(): casting issue needs to be checked again
+//        Objects[] array = (Objects[]) Stream.of(1,2,3,4).toArray();
 
         //8. min max
         System.out.println("max"+ Stream.of(2,44,69).max(Comparator.naturalOrder()).get()); // comes in optional[] so need to get
         System.out.println("min"+ Stream.of(2,44,69).min(Comparator.naturalOrder()).get());
+
+        //9. forEachOrdered, streams are parallel but still order is maintained using for each ordered
+        List<Integer> numbers2 = Arrays.asList(1,2,3,4,5,6,7,8);
+        System.out.println("Using for each with parallel stream: ");
+        numbers2.parallelStream().forEach(System.out::println);
+        System.out.println("Using for each ordered with parallel stream: ");
+        numbers2.parallelStream().forEachOrdered(System.out::println);
 
         //Example
         List<String> names = Arrays.asList("Anna", "Bob", "CharLie", "David");
@@ -64,6 +71,10 @@ public class TerminalOps {
         //stateful: if a operation known about all elements like sorting
         //stateless: if operation know one element at one time like map
 
-
+        //Example
+        //Stream cannot be resued after a terminal operation has been called
+        Stream<String> stream = names.stream();
+        stream.forEach(System.out::println);
+//        stream.map(String::toUpperCase).toList();
     }
 }
