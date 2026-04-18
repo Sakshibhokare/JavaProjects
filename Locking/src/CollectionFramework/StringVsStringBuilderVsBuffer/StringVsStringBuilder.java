@@ -16,6 +16,8 @@ public class StringVsStringBuilder {
         }
         System.out.println(result);
 
+
+
         //for solving this issue we uses string builder
         StringBuilder sb = new StringBuilder("Hello");
         sb.append(" world").append(" !").reverse();
