@@ -25,7 +25,7 @@ public class AbstractionEncapsulation {
 //
 //# ⚔️ Abstract Class vs Interface (DEEP COMPARISON)
 //
-//| Feature              | Abstract Class      | Interface                   |
+//                | Feature              | Abstract Class      | Interface                   |
 //                | -------------------- | ------------------- | --------------------------- |
 //                | Methods              | Abstract + Concrete | Default + Static + Abstract |
 //                | Variables            | Instance + static   | `public static final` only  |
